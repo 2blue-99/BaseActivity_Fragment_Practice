@@ -9,18 +9,26 @@ import com.example.baseactivity_fragment_practice.DAO.API_Data
 import com.example.baseactivity_fragment_practice.DAO.Data
 import com.example.data.repoImpl.RepoImpl
 import com.example.domain.model.DomainData
+import com.example.domain.use_case.GetPageDataUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 /**
  * 2023-01-26
  * pureum
  */
-class MainViewModel : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val useCase: GetPageDataUseCase
+) : ViewModel() {
+
+
 
     private var _data = MutableLiveData<DomainData>()
     val data : LiveData<DomainData>
@@ -32,7 +40,8 @@ class MainViewModel : ViewModel() {
 
     fun myGetData(){
         viewModelScope.launch {
-            _data.value = RepoImpl().getData()
+            //_data.value = RepoImpl().getData()
+            _data.value = useCase()
         }
     }
 

@@ -5,16 +5,16 @@ import com.example.data.remote.dto.Data
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
+import javax.inject.Inject
 
 /**
  * 2023-01-27
  * pureum
  */
-class PageDataSourceImpl : PageDataSource{
+class PageDataSourceImpl @Inject constructor(
+    private val retrofit: Retrofit
+): PageDataSource{
     override suspend fun getPageData(): Data {
-        return Retrofit.Builder()
-            .baseUrl("https://rickandmortyapi.com/api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build().create(PageDataSource::class.java).getPageData()
+        return retrofit.create(PageDataSource::class.java).getPageData()
     }
 }
