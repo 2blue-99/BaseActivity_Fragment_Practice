@@ -1,5 +1,6 @@
 package com.example.data.repoImpl
 
+import android.util.Log
 import com.example.data.remote.dataSource.PageDataSource
 import com.example.data.remote.dataSourceImpl.PageDataSourceImpl
 import com.example.data.remote.dto.toDomainData
@@ -14,7 +15,12 @@ import javax.inject.Inject
 class RepoImpl @Inject constructor(
     private val api : PageDataSource
 ) : PageDataRepo{
-    override suspend fun getData(): DomainData {
-        return api.getPageData().toDomainData()
+
+    init {
+        Log.e("TAG", "create PepoImpl", )
+    }
+
+    override suspend fun getData(page:String): DomainData {
+        return api.getPageData(page).toDomainData()
     }
 }

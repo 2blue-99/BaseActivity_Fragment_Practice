@@ -1,5 +1,6 @@
 package com.example.data.remote.dataSourceImpl
 
+import android.util.Log
 import com.example.data.remote.dataSource.PageDataSource
 import com.example.data.remote.dto.Data
 import retrofit2.Retrofit
@@ -14,7 +15,8 @@ import javax.inject.Inject
 class PageDataSourceImpl @Inject constructor(
     private val retrofit: Retrofit
 ): PageDataSource{
-    override suspend fun getPageData(): Data {
-        return retrofit.create(PageDataSource::class.java).getPageData()
+    override suspend fun getPageData(page:String): Data {
+        Log.e("TAG", "@@@@@@   getPageData: $page", )
+        return retrofit.create(PageDataSource::class.java).getPageData(page)
     }
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_navigation"
+    app:startDestination="@id/mainFragment"
+    >
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.baseactivity_fragment_practice.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_firtstFragment"
+            app:destination="@id/firtstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firtstFragment"
+        android:name="com.example.baseactivity_fragment_practice.fragment.FirtstFragment"
+        android:label="fragment_firtst"
+        tools:layout="@layout/fragment_firtst" >
+        <action
+            android:id="@+id/action_firtstFragment_to_secondeFragment"
+            app:destination="@id/secondeFragment" />
+        <action
+            android:id="@+id/action_firtstFragment_to_secondeFragment2"
+            app:destination="@id/secondeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondeFragment"
+        android:name="com.example.baseactivity_fragment_practice.fragment.SecondeFragment"
+        android:label="fragment_seconde"
+        tools:layout="@layout/fragment_seconde" >
+        <action
+            android:id="@+id/action_secondeFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>

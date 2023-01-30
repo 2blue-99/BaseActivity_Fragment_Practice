@@ -7,5 +7,5 @@ import com.example.domain.model.DomainData
  * pureum
  */
 interface PageDataRepo {
-    suspend fun getData():DomainData
+    suspend fun getData(page:String):DomainData
 }
