@@ -12,6 +12,7 @@ import com.example.baseactivity_fragment_practice.MainViewModel
 import com.example.baseactivity_fragment_practice.R
 import com.example.baseactivity_fragment_practice.databinding.FragmentMainBinding
 import com.example.baseactivity_fragment_practice.databinding.ItemsBinding
+import com.example.baseactivity_fragment_practice.dto.Test
 import com.example.baseactivity_fragment_practice.fragment.adapter.Adapter
 
 class MainFragment : Fragment() {
@@ -27,20 +28,9 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         activityViewModel.myGetData()
-        activityViewModel.data.observe(viewLifecycleOwner){
-            if(it != null) {
-//                adapter.nameList = it.name
-//                adapter.statusList = it.name
-//                adapter.speciesList = it.name
-//                adapter.imageList = it.name
-            }
-            else
-                Log.e("TAG", "onCreateView: err", )
-        }
+        activityViewModel.data.observe(viewLifecycleOwner){ adapter.dataList = it }
         binding.button.setOnClickListener{ activityViewModel.myGetData(binding.textField.text.toString()) }
-
         initRecyclerView()
-
         return binding.root
     }
 

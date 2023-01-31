@@ -30,13 +30,11 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         binding.bottomNav.setupWithNavController(navController)
-
         //supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.Sk))
 //        window.apply {
 //            statusBarColor = Color.WHITE
 //            WindowInsetsControllerCompat(this, this.decorView).isAppearanceLightStatusBars = true
-//        }
-
     }
+
 
 }

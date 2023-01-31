@@ -16,7 +16,6 @@ class PageDataSourceImpl @Inject constructor(
     private val retrofit: Retrofit
 ): PageDataSource{
     override suspend fun getPageData(page:String): Data {
-        Log.e("TAG", "@@@@@@   getPageData: $page", )
         return retrofit.create(PageDataSource::class.java).getPageData(page)
     }
 }

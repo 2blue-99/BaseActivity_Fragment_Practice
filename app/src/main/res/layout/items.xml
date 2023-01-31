@@ -9,7 +9,8 @@
 
 
     <LinearLayout
-        android:layout_margin="7dp"
+        android:id="@+id/totalLayout"
+        android:layout_margin="9dp"
         android:layout_width="409dp"
         android:layout_height="58dp"
         android:layout_marginStart="1dp"
@@ -25,6 +26,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:layout_marginLeft="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -58,6 +60,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginLeft="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -84,6 +87,7 @@
 
             <TextView
                 android:id="@+id/image"
+                android:textSize="7dp"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
