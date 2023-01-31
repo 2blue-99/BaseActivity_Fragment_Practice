@@ -9,8 +9,6 @@ import com.example.baseactivity_fragment_practice.R
 
 class FirtstFragment : Fragment() {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

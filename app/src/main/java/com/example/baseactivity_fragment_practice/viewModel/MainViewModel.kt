@@ -1,14 +1,14 @@
-package com.example.baseactivity_fragment_practice
+package com.example.baseactivity_fragment_practice.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.baseactivity_fragment_practice.dto.AppData
+import com.example.baseactivity_fragment_practice.viewModel.base.BaseMainVeiwModel
 import com.example.domain.use_case.GetPageDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.net.SocketException
 import javax.inject.Inject
 
 /**
@@ -18,16 +18,16 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val useCase: GetPageDataUseCase
-) : ViewModel() {
+) : BaseMainVeiwModel() {
     private val list = arrayListOf<AppData>()
     private var _data = MutableLiveData<ArrayList<AppData>>()
     val data : LiveData<ArrayList<AppData>>
         get() = _data
 
     fun myGetData(page:String = "1"){
-        viewModelScope.launch {
-            var useCaseData = useCase(page)
-            Log.e("TAG", "myGetData: $useCaseData , page : $page", )
+        viewModelScope.launch(exceptionHandler){
+            val useCaseData = useCase(page)
+            list.clear()
             for(i  in 0 until useCaseData.name.size)
                 list.add(AppData(
                     type = i%3,
@@ -37,8 +37,12 @@ class MainViewModel @Inject constructor(
                     image = useCaseData.image[i]
                     ))
             _data.value = list
-            //_data.value = useCase(page)
-            //Log.e("TAG", "myGetData: ${_data.value}")
+        }
+    }
+
+    fun test(){
+        viewModelScope.launch(exceptionHandler) {
+            throw SocketException()
         }
     }
 }
