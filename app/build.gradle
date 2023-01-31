@@ -39,8 +39,7 @@ android {
 
 dependencies {
 
-    //코루틴
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -50,11 +49,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    //CA
     implementation project(path:':data')
     implementation project(path:':domain')
 
-
-
+    //코루틴
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
     //activity, fragment viewModel을 메인엑티비티에서 쓸수있게해줌
     def  activity_version = "1.5.1"
