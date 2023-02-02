@@ -9,7 +9,7 @@ import com.example.domain.repo.PageDataRepo
  * pureum
  */
 class GetPageDataUseCase (private val repository : PageDataRepo) {
-    suspend operator fun invoke(page:String) : DomainData{
+    suspend operator fun invoke(page:String) : List<DomainData>{
         return repository.getData(page)
     }
 }

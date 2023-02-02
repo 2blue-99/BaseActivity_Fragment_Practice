@@ -6,14 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 import com.example.baseactivity_fragment_practice.R
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
-abstract class BaseFragment<VB: ViewBinding>(private val inflate:Inflate<VB>)
-    : Fragment() {
-
+abstract class BaseFragment<VB: ViewBinding>(
+    private val inflate:Inflate<VB>
+) : Fragment() {
+    val viewModel : Any by activityViewModels()
     private var _binding: VB? = null
     val binding get() = _binding!!
 

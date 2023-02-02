@@ -87,13 +87,13 @@
                 android:layout_weight="1"
                 android:text="image :" />
 
-            <TextView
-                android:id="@+id/image"
-                android:textSize="7dp"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:text="TextView" />
+                tools:srcCompat="@tools:sample/avatars" />
+
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

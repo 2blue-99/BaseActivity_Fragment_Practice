@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.baseactivity_fragment_practice.databinding.ItemsBinding
 import com.example.baseactivity_fragment_practice.dto.AppData
+import com.example.domain.model.DomainData
 import java.math.MathContext
 
 /**
@@ -17,19 +19,21 @@ import java.math.MathContext
  */
 class Adapter : RecyclerView.Adapter<Adapter.AdapterViewHolder>() {
 
-    var dataList = arrayListOf<AppData>()
+    var dataList = listOf<DomainData>()
         set(value) {
             field = value
             notifyDataSetChanged()
             Log.e("TAG", "$dataList", )
         }
 
+
     inner class AdapterViewHolder(private val binding : ItemsBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(list: AppData){
+        fun bind(list: DomainData){
             binding.name.text = list.name
             binding.status.text = list.status
             binding.species.text = list.species
-            binding.image.text = list.image
+            Glide.with(itemView).load(list.image).circleCrop().into(binding.imageView)
+            binding.imageView
         }
     }
 
@@ -58,9 +62,9 @@ class Adapter : RecyclerView.Adapter<Adapter.AdapterViewHolder>() {
         holder.bind(dataList[position])
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return dataList[position].type
-    }
+//    override fun getItemViewType(position: Int): Int {
+//        return dataList[position]
+//    }
 
     override fun getItemCount(): Int = dataList.size
 }

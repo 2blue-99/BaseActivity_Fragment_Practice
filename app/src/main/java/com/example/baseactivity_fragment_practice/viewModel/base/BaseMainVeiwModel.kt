@@ -1,5 +1,6 @@
 package com.example.baseactivity_fragment_practice.viewModel.base
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,6 +20,7 @@ abstract class BaseMainVeiwModel : ViewModel() {
 
     protected  val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         throwable.printStackTrace()
+        Log.e("TAG", "$throwable: ", )
         when(throwable){
             is SocketException -> _fetchState.postValue(Pair(throwable, FetchState.BAD_INTERNET))
             is HttpException -> _fetchState.postValue(Pair(throwable, FetchState.PARSE_ERROR))

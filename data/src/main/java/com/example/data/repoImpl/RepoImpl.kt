@@ -20,7 +20,7 @@ class RepoImpl @Inject constructor(
         Log.e("TAG", "create PepoImpl", )
     }
 
-    override suspend fun getData(page:String): DomainData {
+    override suspend fun getData(page:String): List<DomainData> {
         return api.getPageData(page).toDomainData()
     }
 }

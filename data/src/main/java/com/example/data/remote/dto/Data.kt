@@ -38,12 +38,13 @@ data class Origin(
     val name: String,
     val url: String
 )
-fun Data.toDomainData(): DomainData =
-    DomainData(
-       // next = info.next,
-        //prev = info.prev,
-        name = results.map { it.name },
-        status = results.map { it.status },
-        species = results.map { it.species },
-        image = results.map { it.image }
-    )
+fun Data.toDomainData(): List<DomainData> =
+    results.map { DomainData(it.name,it.status,it.species,it.image) }
+//    DomainData(
+//       // next = info.next,
+//        //prev = info.prev,
+//        name = results.map { it.name },
+//        status = results.map { it.status },
+//        species = results.map { it.species },
+//        image = results.map { it.image }
+//    )

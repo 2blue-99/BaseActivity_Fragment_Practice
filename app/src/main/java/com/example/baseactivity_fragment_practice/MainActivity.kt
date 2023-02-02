@@ -1,7 +1,9 @@
 package com.example.baseactivity_fragment_practice
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
@@ -44,5 +46,11 @@ class MainActivity : AppCompatActivity() {
 //            WindowInsetsControllerCompat(this, this.decorView).isAppearanceLightStatusBars = true
     }
 
+    fun downKeyBoard(){
+        if(this.currentFocus != null){
+            val inputManager: InputMethodManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.hideSoftInputFromWindow(this.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
+    }
 
 }

@@ -24,5 +24,4 @@ object DataSoureModule {
     fun provideDataSource(retrofit: Retrofit): PageDataSource {
         return PageDataSourceImpl(retrofit)
     }
-
 }
