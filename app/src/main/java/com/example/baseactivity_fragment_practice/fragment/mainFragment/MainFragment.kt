@@ -1,5 +1,6 @@
 package com.example.baseactivity_fragment_practice.fragment.mainFragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,12 +12,14 @@ import com.example.baseactivity_fragment_practice.MainActivity
 import com.example.baseactivity_fragment_practice.viewModel.MainViewModel
 import com.example.baseactivity_fragment_practice.databinding.FragmentMainBinding
 import com.example.baseactivity_fragment_practice.fragment.base.BaseFragment
+import com.example.domain.model.DomainData
 
 
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
     private val activityViewModel : MainViewModel by activityViewModels()
-    private val adapter = Adapter()
+    private val adapter = MainAdapter(clickListener = { getDialog(it) })
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,5 +55,15 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             }
             false
         }
+    }
+
+    fun getDialog(list:DomainData){
+        AlertDialog.Builder(requireContext())
+            .setTitle("저장")
+            .setMessage("${list.name}를 저장 하시겠습니까?")
+            .setPositiveButton("확인") { dialog, id ->
+                activityViewModel.insertData(list)
+            }
+            .setNegativeButton("취소"){ dialog, id -> }.show()
     }
 }

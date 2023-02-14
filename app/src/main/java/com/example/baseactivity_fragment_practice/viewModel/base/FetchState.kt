@@ -5,5 +5,5 @@ package com.example.baseactivity_fragment_practice.viewModel.base
  * pureum
  */
 enum class FetchState {
-    BAD_INTERNET,PARSE_ERROR,WRONG_CONNECTION,FAIL
+    BAD_INTERNET,PARSE_ERROR,WRONG_CONNECTION,FAIL,SQLITE_CONSTRAINT_PRIMARYKEY
 }

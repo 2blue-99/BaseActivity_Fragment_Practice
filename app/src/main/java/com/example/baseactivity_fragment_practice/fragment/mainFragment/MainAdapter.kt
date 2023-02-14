@@ -1,15 +1,12 @@
 package com.example.baseactivity_fragment_practice.fragment.mainFragment
 
-import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.baseactivity_fragment_practice.databinding.ItemsBinding
-import com.example.baseactivity_fragment_practice.dto.AppData
 import com.example.domain.model.DomainData
 import java.math.MathContext
 
@@ -17,13 +14,17 @@ import java.math.MathContext
  * 2023-01-30
  * pureum
  */
-class Adapter : RecyclerView.Adapter<Adapter.AdapterViewHolder>() {
+class MainAdapter(
+    private val clickListener: (DomainData) -> Unit
+) : RecyclerView.Adapter<MainAdapter.AdapterViewHolder>() {
+
+    private lateinit var binding : ItemsBinding
 
     var dataList = listOf<DomainData>()
         set(value) {
             field = value
             notifyDataSetChanged()
-            Log.e("TAG", "$dataList", )
+            //Log.e("TAG", "$dataList", )
         }
 
 
@@ -33,11 +34,16 @@ class Adapter : RecyclerView.Adapter<Adapter.AdapterViewHolder>() {
             binding.status.text = list.status
             binding.species.text = list.species
             Glide.with(itemView).load(list.image).circleCrop().into(binding.imageView)
-            binding.imageView
+
+            binding.totalLayout.setOnClickListener{
+                clickListener(list)
+            }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {
+        binding = ItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return when(viewType){
             0 -> {
                 var binding = ItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -58,13 +64,13 @@ class Adapter : RecyclerView.Adapter<Adapter.AdapterViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: AdapterViewHolder, position: Int) {
-        Log.e("TAG", "onBindViewHolder", )
-        holder.bind(dataList[position])
+        //Log.e("TAG", "onBindViewHolder", )
+        val item = dataList[position]
+        holder.bind(item)
+        binding.totalLayout.setOnClickListener{
+            clickListener(item)
+        }
     }
-
-//    override fun getItemViewType(position: Int): Int {
-//        return dataList[position]
-//    }
 
     override fun getItemCount(): Int = dataList.size
 }
