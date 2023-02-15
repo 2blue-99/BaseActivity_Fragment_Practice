@@ -11,8 +11,6 @@ import retrofit2.http.Query
  * pureum
  */
 interface PageDataSource {
-//    @GET("character/?page=2")
-//    @GET("character/?page={p}")
     @GET("character")
     suspend fun getPageData(
         @Query("page") page: String

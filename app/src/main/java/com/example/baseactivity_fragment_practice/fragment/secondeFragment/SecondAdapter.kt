@@ -55,5 +55,5 @@ class SecondAdapter(
 
     override fun getItemCount(): Int = dataList.size
 
-    fun changeData(){ notifyDataSetChanged() }
+//    fun changeData(){ notifyDataSetChanged() }
 }

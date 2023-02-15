@@ -24,9 +24,7 @@ abstract class BaseMainVeiwModel : ViewModel() {
         when(throwable){
             is SocketException -> _fetchState.postValue(Pair(throwable, FetchState.BAD_INTERNET))
             is HttpException -> _fetchState.postValue(Pair(throwable, FetchState.PARSE_ERROR))
-            is UnknownHostException -> _fetchState.postValue(Pair(throwable,
-                FetchState.WRONG_CONNECTION
-            ))
+            is UnknownHostException -> _fetchState.postValue(Pair(throwable, FetchState.WRONG_CONNECTION))
             is SQLiteConstraintException -> _fetchState.postValue(Pair(throwable,FetchState.SQLITE_CONSTRAINT_PRIMARYKEY))
             else -> _fetchState.postValue(Pair(throwable, FetchState.FAIL))
         }

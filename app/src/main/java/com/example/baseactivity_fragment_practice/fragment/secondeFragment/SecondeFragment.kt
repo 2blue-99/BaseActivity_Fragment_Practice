@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.baseactivity_fragment_practice.R
@@ -26,17 +27,18 @@ class SecondeFragment : BaseFragment<FragmentSecondeBinding>(FragmentSecondeBind
     private val adapter = SecondAdapter(clickListener = { getDialog(it) })
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("TAG", "onViewCreated: seconde", )
+
         activityViewModel.getAllData.observe(viewLifecycleOwner){
-            Log.e("TAG", "onViewCreated: observe", )
             if(it==null) Log.e("TAG", "onViewCreated: no data!", )
             else {
                 adapter.dataList = it
-                Log.e("TAG", "onViewCreated: $it", )
             }
+            checkDataSize()
         }
         activityViewModel.getAllData()
         initRecyclerView()
+        checkDataSize()
+
     }
 
     fun initRecyclerView(){
@@ -49,8 +51,13 @@ class SecondeFragment : BaseFragment<FragmentSecondeBinding>(FragmentSecondeBind
             .setTitle("삭제")
             .setMessage("${list.name}를 삭제 하시겠습니까?")
             .setPositiveButton("확인") { dialog, id ->
-                //activityViewModel.deleteData(list)
+                activityViewModel.removeData(list.name)
+                activityViewModel.getAllData()
             }
             .setNegativeButton("취소"){ dialog, id -> }.show()
+    }
+
+    fun checkDataSize(){
+        binding.textView3.isVisible = adapter.dataList.isEmpty()
     }
 }
